@@ -1,8 +1,13 @@
+from fastapi import FastAPI
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
-from sklearn.metrics import mean_absolute_error,mean_squared_error
+from sklearn.metrics import mean_absolute_error, mean_squared_error
 import numpy as np
+
+# Create FastAPI app
+app = FastAPI()
+
 # Load dataset
 data = pd.read_csv("crop_dataset_with_yield.csv")
 
@@ -10,7 +15,8 @@ data = pd.read_csv("crop_dataset_with_yield.csv")
 rice_data = data[data['Crop'] == 'Rice']
 
 # Features
-X = rice_data[['Nitrogen','Phosphorus','Potassium','Temperature','Humidity','pH_Value','Rainfall']]
+features = ['Nitrogen','Phosphorus','Potassium','Temperature','Humidity','pH_Value','Rainfall']
+X = rice_data[features]
 
 # Target
 y = rice_data['Yield']
@@ -24,14 +30,17 @@ model.fit(X_train, y_train)
 
 print("Model trained successfully")
 
-y_pred=model.predict(X_test)
-r2=model.score(X_test,y_test)
-mae=mean_absolute_error(y_test,y_pred)
-rmse=np.sqrt(mean_squared_error(y_test,y_pred))
-print("\nModel  Performance:")
-print("R2 Score:",round(r2,2))
-print("Mean Absolute Error:",round(mae,2))
-print("RMSE:",round(rmse,2))
+# Model evaluation
+y_pred = model.predict(X_test)
+r2 = model.score(X_test, y_test)
+mae = mean_absolute_error(y_test, y_pred)
+rmse = np.sqrt(mean_squared_error(y_test, y_pred))
+
+print("Model Performance:")
+print("R2 Score:", round(r2,2))
+print("MAE:", round(mae,2))
+print("RMSE:", round(rmse,2))
+
 
 # Recommendation Function
 def recommendation(N, P, K, ph, rain):
@@ -54,31 +63,37 @@ def recommendation(N, P, K, ph, rain):
         advice.append("Provide irrigation for rice crop.")
 
     if len(advice) == 0:
-        advice.append("Soil conditions look good. Maintain proper irrigation and pest control.")
+        advice.append("Soil conditions look good. Maintain irrigation and pest control.")
 
     return advice
 
 
-# -------- USER INPUT --------
-N = float(input("Enter Nitrogen: "))
-P = float(input("Enter Phosphorus: "))
-K = float(input("Enter Potassium: "))
-temp = float(input("Enter Temperature: "))
-hum = float(input("Enter Humidity: "))
-ph = float(input("Enter pH value: "))
-rain = float(input("Enter Rainfall: "))
-
-sample = [[N,P,K,temp,hum,ph,rain]]
-
-prediction = model.predict(sample)
-
-print("\nPredicted Rice Yield:", round(prediction[0],2),"tons/hectare")
+# Home API
+@app.get("/")
+def home():
+    return {"message": "Rice Yield Prediction API Running"}
 
 
-# -------- RECOMMENDATION --------
-tips = recommendation(N,P,K,ph,rain)
+# Prediction API
+@app.get("/predict")
+def predict(
+    N: float,
+    P: float,
+    K: float,
+    temp: float,
+    hum: float,
+    ph: float,
+    rain: float
+):
 
-print("\nSuggestions to Improve Yield:")
+    sample = pd.DataFrame([[N,P,K,temp,hum,ph,rain]], columns=features)
 
-for tip in tips:
-    print("-", tip)
+    prediction = model.predict(sample)
+
+    tips = recommendation(N,P,K,ph,rain)
+
+    return {
+        "Predicted_Yield": round(float(prediction[0]),2),
+        "Unit": "tons/hectare",
+        "Suggestions": tips
+    }
