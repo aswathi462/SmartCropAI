@@ -1,19 +1,22 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 
 class DiseaseDetectionActivity : AppCompatActivity() {
+    private var selectedImageUri: Uri? = null
 
-    // Launcher for the Gallery/File picker
     private val getImage = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         uri?.let {
-            Toast.makeText(this, "Image Selected!", Toast.LENGTH_SHORT).show()
-            // Optional: If you have an ImageView inside uploadArea, you can set it here:
-            // findViewById<ImageView>(R.id.ivPreview).setImageURI(it)
+            selectedImageUri = it
+            findViewById<ImageView>(R.id.ivPreview).visibility = View.VISIBLE
+            findViewById<ImageView>(R.id.ivPreview).setImageURI(it)
+            findViewById<ImageView>(R.id.ivUploadIcon).visibility = View.GONE
         }
     }
 
@@ -21,30 +24,23 @@ class DiseaseDetectionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_disease_detection)
 
-        // 1. Setup Spinner (Paddy Varieties)
         val spinner = findViewById<Spinner>(R.id.spinnerVariety)
         val varieties = arrayOf("Select Variety", "Jyothi", "Kanchana", "Uma", "Jaya", "Matta")
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, varieties)
-        spinner.adapter = adapter
+        spinner.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, varieties)
 
-        // 2. Setup Image Upload Area
-        val uploadArea = findViewById<FrameLayout>(R.id.uploadArea)
-        uploadArea.setOnClickListener {
-            getImage.launch("image/*") // Opens file manager for images
-        }
+        findViewById<FrameLayout>(R.id.uploadArea).setOnClickListener { getImage.launch("image/*") }
+        findViewById<LinearLayout>(R.id.btnBack).setOnClickListener { finish() }
 
-        // 3. Setup Back Button
-        findViewById<LinearLayout>(R.id.btnBack).setOnClickListener {
-            finish() // Returns to Dashboard
-        }
-
-        // 4. Submit Button
+        // THIS IS THE PART THAT OPENS THE RESULT PAGE
         findViewById<Button>(R.id.btnSubmit).setOnClickListener {
-            val selectedVariety = spinner.selectedItem.toString()
-            if (selectedVariety == "Select Variety") {
-                Toast.makeText(this, "Please select a paddy variety", Toast.LENGTH_SHORT).show()
+            val variety = spinner.selectedItem.toString()
+            if (variety == "Select Variety" || selectedImageUri == null) {
+                Toast.makeText(this, "Please select variety and image", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(this, "Analyzing for $selectedVariety...", Toast.LENGTH_LONG).show()
+                // GO TO RESULT PAGE
+                val intent = Intent(this, DiseaseResultActivity::class.java)
+                intent.putExtra("VARIETY", variety)
+                startActivity(intent)
             }
         }
     }
