@@ -1,3 +1,139 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">AgroPaddy AI</string>
+    <string name="agropaddy_ai">AgroPaddy AI</string>
+    <string name="agropaddy">AgroPaddy</string>
+    <string name="kerala_paddy_monitoring">Kerala Paddy Monitoring</string>
+
+    <string name="language_english">English</string>
+    <string name="language_hindi">हिन्दी</string>
+    <string name="language_malayalam">മലയാളം</string>
+    <string name="language_updated">Language updated</string>
+    <string name="language_preference">Language preference</string>
+    <string name="language_preference_subtitle">Choose the language used across the app</string>
+
+    <string name="hint_full_name">Full name</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_confirm_password">Confirm password</string>
+
+    <string name="login">Login</string>
+    <string name="logout">Logout</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="no_account_signup">Don\'t have an account? Sign Up</string>
+    <string name="already_have_account_login">Already have an account? Login</string>
+
+    <string name="create_account">Create your account</string>
+    <string name="signup_subtitle">Start planning your farming smarter today</string>
+    <string name="signup_success">Sign up successful</string>
+
+    <string name="fill_all_fields">Please fill all fields</string>
+    <string name="invalid_email">Please enter a valid email address</string>
+    <string name="password_too_short">Password must be at least 4 characters</string>
+    <string name="password_mismatch">Passwords do not match</string>
+
+    <string name="login_success">Login successful!</string>
+    <string name="login_invalid">Invalid username or password</string>
+
+    <string name="dashboard">Dashboard</string>
+    <string name="choose_service">Choose Service</string>
+    <string name="select_option_get_started">Select an option to get started</string>
+
+    <string name="disease_detection">Disease Detection</string>
+    <string name="identify_crop_diseases">Identify crop diseases</string>
+    <string name="yield_prediction">Yield Prediction</string>
+    <string name="predict_your_harvest">Predict your harvest</string>
+
+    <string name="back">Back</string>
+    <string name="back_arrow">← Back</string>
+
+    <string name="select_paddy_variety_kerala">Select Paddy Variety (Kerala)</string>
+    <string name="select_paddy_variety">Select Paddy Variety</string>
+    <string name="describe_symptoms_optional">Describe Symptoms (Optional)</string>
+    <string name="hint_symptoms">e.g., Yellow spots on leaves, brown patches...</string>
+    <string name="upload_leaf_image">Upload Leaf Image</string>
+    <string name="analyze_crop">Analyze Crop</string>
+
+    <string name="select_variety_error">Please select a paddy variety</string>
+    <string name="image_selected">Image selected!</string>
+    <string name="analyzing_for_variety">Analyzing for %1$s...</string>
+
+    <string name="soil_nutrients_npk">Soil Nutrients (NPK)</string>
+    <string name="nitrogen_n">Nitrogen (N)</string>
+    <string name="phosphorus_p">Phosphorus (P)</string>
+    <string name="potassium_k">Potassium (K)</string>
+    <string name="hint_nitrogen">e.g., 90</string>
+    <string name="hint_phosphorus">e.g., 42</string>
+    <string name="hint_potassium">e.g., 40</string>
+    <string name="predict_yield">Predict Yield</string>
+    <string name="yield_page_title">AgroPaddy Yield Prediction</string>
+    <string name="yield_page_subtitle">Estimate harvest performance using field, nutrient, and climate inputs</string>
+    <string name="crop_profile">Crop Profile</string>
+    <string name="field_conditions">Field and Climate Inputs</string>
+    <string name="land_area_acres">Land Area (Acres)</string>
+    <string name="hint_area_acres">e.g., 2.5</string>
+    <string name="temperature_c">Temperature (°C)</string>
+    <string name="hint_temperature">e.g., 28</string>
+    <string name="humidity_percent">Humidity (%)</string>
+    <string name="hint_humidity">e.g., 78</string>
+    <string name="soil_ph">Soil pH</string>
+    <string name="hint_soil_ph">e.g., 6.4</string>
+    <string name="rainfall_mm">Rainfall (mm)</string>
+    <string name="hint_rainfall">e.g., 240</string>
+    <string name="predict_yield_now">Predict Yield Now</string>
+
+    <string name="fill_nutrients_error">Please fill all nutrient values</string>
+    <string name="calculating_yield_values">Calculating yield based on N:%1$s, P:%2$s, K:%3$s</string>
+    <string name="fill_yield_inputs_error">Please fill all yield prediction inputs</string>
+    <string name="invalid_yield_input_error">Enter valid agronomy values within realistic ranges</string>
+    <string name="yield_result_title">AgroPaddy Yield Result</string>
+    <string name="yield_band_excellent">Excellent Potential</string>
+    <string name="yield_band_good">Good Potential</string>
+    <string name="yield_band_moderate">Moderate Potential</string>
+    <string name="yield_band_low">Low Potential</string>
+    <string name="label_yield_per_acre">Yield / Acre</string>
+    <string name="label_total_production">Total Output</string>
+    <string name="label_yield_summary">Performance Summary</string>
+    <string name="yield_value_format">%1$.2f t/acre</string>
+    <string name="total_yield_value_format">%1$.2f tons</string>
+    <string name="btn_predict_again">Predict Again</string>
+
+    <string name="profile_title">Profile</string>
+    <string name="profile_details">Profile details</string>
+    <string name="account_actions">Account actions</string>
+    <string name="default_profile_name">AgroPaddy User</string>
+    <string name="default_profile_email">No email added</string>
+
+    <!-- Disease Detection Page -->
+    <string name="upload_crop_image_title">Upload Crop Image</string>
+    <string name="upload_instructions">Tap Camera or Gallery to upload a leaf photo</string>
+    <string name="btn_camera">📷 Camera</string>
+    <string name="btn_gallery">🖼 Gallery</string>
+    <string name="invalid_image_error">⚠  Invalid image. Please upload a crop or leaf photo.</string>
+    <string name="invalid_image_error_toast">Upload a valid crop leaf image to continue</string>
+    <string name="no_image_error">Please select or capture a crop image first</string>
+    <string name="tap_to_change">Use the buttons below to change the image</string>
+    <string name="disease_result_title">AgroPaddy Disease Result</string>
+    <string name="severity_healthy">Healthy</string>
+    <string name="severity_mild">Mild Infection</string>
+    <string name="severity_moderate">Moderate Infection</string>
+    <string name="severity_severe">Severe</string>
+    <string name="label_confidence">Confidence</string>
+    <string name="label_selected_variety">Selected Variety</string>
+    <string name="label_disease_identified">Disease Identified</string>
+    <string name="label_cause">Cause</string>
+    <string name="recommended_action">Recommended Action</string>
+    <string name="btn_analyze_again">Analyze Another Image</string>
+    <string name="disease_page_subtitle">AI-powered disease analysis for paddy crops</string>
+    <string name="unknown_variety">Unknown variety</string>
+    <string name="crop_details">Crop Details</string>
+    <string name="camera_permission_denied">Camera permission denied</string>
+
+    <string-array name="paddy_varieties">
+        <item>Select Variety</item>
+        <item>Jyothi</item>
+        <item>Kanchana</item>
+        <item>Uma</item>
+        <item>Jaya</item>
+        <item>Matta</item>
+    </string-array>
 </resources>

@@ -1,13 +1,11 @@
 package com.example.myapplication
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageView
 import android.widget.LinearLayout
 import com.google.android.material.card.MaterialCardView
 
-class DashboardActivity : AppCompatActivity() {
+class DashboardActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
@@ -17,15 +15,6 @@ class DashboardActivity : AppCompatActivity() {
         btnProfile.setOnClickListener {
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
-        }
-
-        val btnLogout = findViewById<LinearLayout>(R.id.btnLogout)
-        btnLogout.setOnClickListener {
-            // Logic to go back to Login screen
-            val intent = Intent(this, LoginActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
-            finish()
         }
 
         // --- NEW: Disease Detection Connection ---
