@@ -3,6 +3,7 @@ import pandas as pd
 # Load dataset
 data = pd.read_csv("crop_dataset.csv")
 
+
 # Create yield column using a formula
 data["Yield"] = (
     data["Nitrogen"] * 0.02 +
