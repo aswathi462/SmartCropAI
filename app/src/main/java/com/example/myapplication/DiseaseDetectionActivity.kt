@@ -6,7 +6,10 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
+import com.google.android.material.button.MaterialButton
+import java.io.File
 
 class DiseaseDetectionActivity : AppCompatActivity() {
     private var selectedImageUri: Uri? = null
@@ -43,5 +46,26 @@ class DiseaseDetectionActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
+
+        return PixelAnalysis(
+            brownRatio  = brownCount  / total,
+            yellowRatio = yellowCount / total,
+            darkRatio   = darkCount   / total,
+            greenRatio  = greenCount  / total,
+            neutralRatio = neutralCount / total,
+            contentHash = Math.abs(hashAccum)
+        )
+    }
+
+    private fun isValidCropImage(analysis: PixelAnalysis): Boolean {
+        val plantRatio = analysis.greenRatio + analysis.yellowRatio + analysis.brownRatio
+        val diseasedLeafRatio = analysis.yellowRatio + analysis.brownRatio
+
+        return when {
+            analysis.greenRatio >= 0.14f && plantRatio >= 0.22f && analysis.neutralRatio <= 0.72f -> true
+            diseasedLeafRatio >= 0.20f && plantRatio >= 0.24f && analysis.darkRatio <= 0.38f -> true
+            else -> false
+        }
     }
 }
+

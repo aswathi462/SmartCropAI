@@ -2,8 +2,12 @@ package com.example.myapplication
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.*
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.ArrayAdapter
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.Spinner
+import android.widget.Toast
+import com.google.android.material.button.MaterialButton
 
 class YieldPredictionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -11,8 +15,11 @@ class YieldPredictionActivity : AppCompatActivity() {
         setContentView(R.layout.activity_yield_prediction)
 
         val spinner = findViewById<Spinner>(R.id.spinnerYieldVariety)
-        val varieties = arrayOf("Select Variety", "Jyothi", "Kanchana", "Uma", "Jaya")
-        spinner.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, varieties)
+        spinner.adapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_dropdown_item,
+            resources.getStringArray(R.array.paddy_varieties)
+        )
 
         // Navigation back to Dashboard
         findViewById<LinearLayout>(R.id.btnYieldToHome).setOnClickListener { finish() }
@@ -52,6 +59,35 @@ class YieldPredictionActivity : AppCompatActivity() {
                 intent.putExtra("SUGGESTIONS", suggestions.joinToString("\n"))
                 startActivity(intent)
             }
+
+            val result = YieldPredictionEngine.analyze(
+                YieldPredictionEngine.YieldInputs(
+                    variety = spinner.selectedItem.toString(),
+                    nitrogen = nitrogen!!,
+                    phosphorus = phosphorus!!,
+                    potassium = potassium!!,
+                    temperature = temperature!!,
+                    humidity = humidity!!,
+                    soilPh = soilPh!!,
+                    rainfall = rainfall!!
+                )
+            )
+
+            startActivity(
+                Intent(this, YieldResultActivity::class.java).apply {
+                    putExtra(YieldResultActivity.EXTRA_VARIETY, result.variety)
+                    putExtra(YieldResultActivity.EXTRA_YIELD_BAND, result.yieldBand)
+                    putExtra(YieldResultActivity.EXTRA_CONFIDENCE, result.confidence)
+                    putExtra(YieldResultActivity.EXTRA_YIELD_PER_ACRE, result.estimatedYieldPerAcre)
+                    putExtra(YieldResultActivity.EXTRA_SUMMARY, result.performanceSummary)
+                    putExtra(YieldResultActivity.EXTRA_RECOMMENDATION, result.recommendation)
+                }
+            )
         }
+    }
+
+    private fun findDouble(id: Int): Double? {
+        val raw = findViewById<EditText>(id).text.toString().trim()
+        return raw.toDoubleOrNull()
     }
 }
