@@ -33,7 +33,7 @@ async def upload_leaf(image: UploadFile = File(...)):
         "disease": disease_name,
         "confidence": f"{certainty}%",
         "timestamp": firestore.SERVER_TIMESTAMP,
-        "location": "Kuttanad, Kerala"
+        "location": "Kerala"
     })
 
     return {
