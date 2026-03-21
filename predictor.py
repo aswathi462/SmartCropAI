@@ -19,8 +19,8 @@ def detect_disease(processed_image):
     
     # 4. Final Labels (Standard alphabetical order)
     # Double-check your folder names: 
-    # folder 0: Brown Spot, folder 1: Healthy, folder 2: Leaf scald
-    diseases = [ "brown_spot", "healthy","leaf_scald"] 
+    # folder 0: Brown Spot, folder 1: Healthy, folder 2: Hispa, folder 3: Leaf Scald, folder 4: Tungro
+    diseases = [ "Brown Spot", "Healthy","Hispa","Leaf_Scald","Tungro"] 
     
     class_idx = np.argmax(predictions[0])
     confidence = float(np.max(predictions[0]) * 100)
