@@ -2,7 +2,6 @@ from fastapi import FastAPI, UploadFile, File
 import uvicorn
 import cv2
 import numpy as np
-import processor
 import predictor
 import firebase_admin
 from firebase_admin import credentials, firestore
@@ -21,11 +20,8 @@ async def upload_leaf(image: UploadFile = File(...)):
     nparr = np.frombuffer(contents, np.uint8)
     img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
 
-    # 2. Process with OpenCV
-    cleaned_leaf = processor.clean_leaf_image(img)
-    
-    # 3. Get AI Prediction
-    disease_name, certainty = predictor.detect_disease(cleaned_leaf)
+    # 2. Get AI Prediction (includes shared preprocessing)
+    disease_name, certainty = predictor.detect_disease(img)
     
     # 4. Save to Firebase Database
     doc_ref = db.collection("diagnoses").document()
