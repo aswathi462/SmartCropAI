@@ -1,0 +1,139 @@
+<resources>
+    <string name="app_name">അഗ്രോപാഡി എഐ</string>
+    <string name="agropaddy_ai">അഗ്രോപാഡി എഐ</string>
+    <string name="agropaddy">അഗ്രോപാഡി</string>
+    <string name="kerala_paddy_monitoring">കേരള നെൽ നിരീക്ഷണം</string>
+
+    <string name="language_english">English</string>
+    <string name="language_hindi">हिन्दी</string>
+    <string name="language_malayalam">മലയാളം</string>
+    <string name="language_updated">ഭാഷ അപ്ഡേറ്റ് ചെയ്തു</string>
+    <string name="language_preference">ഭാഷ തിരഞ്ഞെടുപ്പ്</string>
+    <string name="language_preference_subtitle">ആപ്പിനാകെ ഉപയോഗിക്കാനുള്ള ഭാഷ തിരഞ്ഞെടുക്കുക</string>
+
+    <string name="hint_full_name">പൂർണ്ണ പേര്</string>
+    <string name="hint_email">ഇമെയിൽ</string>
+    <string name="hint_password">പാസ്‌വേഡ്</string>
+    <string name="hint_confirm_password">പാസ്‌വേഡ് സ്ഥിരീകരിക്കുക</string>
+
+    <string name="login">ലോഗിൻ</string>
+    <string name="logout">ലോഗൗട്ട്</string>
+    <string name="sign_up">സൈൻ അപ്പ്</string>
+    <string name="no_account_signup">അക്കൗണ്ട് ഇല്ലേ? സൈൻ അപ്പ് ചെയ്യുക</string>
+    <string name="already_have_account_login">ഇപ്പോഴേക്കും അക്കൗണ്ട് ഉണ്ടോ? ലോഗിൻ ചെയ്യുക</string>
+
+    <string name="create_account">നിങ്ങളുടെ അക്കൗണ്ട് സൃഷ്ടിക്കൂ</string>
+    <string name="signup_subtitle">നിങ്ങളുടെ കൃഷി പദ്ധതി ഇന്ന് തന്നെ ആരംഭിക്കുക</string>
+    <string name="signup_success">സൈൻ അപ്പ് വിജയിച്ചു</string>
+
+    <string name="fill_all_fields">എല്ലാ ഫീൽഡുകളും പൂരിപ്പിക്കുക</string>
+    <string name="invalid_email">സാധുവായ ഇമെയിൽ നൽകുക</string>
+    <string name="password_too_short">പാസ്‌വേഡ് കുറഞ്ഞത് 4 അക്ഷരമെങ്കിലും വേണം</string>
+    <string name="password_mismatch">പാസ്‌വേഡുകൾ പൊരുത്തപ്പെടുന്നില്ല</string>
+
+    <string name="login_success">ലോഗിൻ വിജയിച്ചു</string>
+    <string name="login_invalid">തെറ്റായ യൂസർനെയിം അല്ലെങ്കിൽ പാസ്‌വേഡ്</string>
+
+    <string name="dashboard">ഡാഷ്ബോർഡ്</string>
+    <string name="choose_service">സേവനം തിരഞ്ഞെടുക്കുക</string>
+    <string name="select_option_get_started">തുടങ്ങാൻ ഒരു ഓപ്ഷൻ തിരഞ്ഞെടുക്കുക</string>
+
+    <string name="disease_detection">രോഗ നിർണയം</string>
+    <string name="identify_crop_diseases">വിളയിലെ രോഗങ്ങൾ കണ്ടെത്തുക</string>
+    <string name="yield_prediction">വിളവിന്റെ പ്രവചനം</string>
+    <string name="predict_your_harvest">നിങ്ങളുടെ വിളവിനെ പ്രവചിക്കുക</string>
+
+    <string name="back">തിരികെ</string>
+    <string name="back_arrow">← തിരികെ</string>
+
+    <string name="select_paddy_variety_kerala">നെല്ലിന്റെ ഇനം തിരഞ്ഞെടുക്കുക (കേരളം)</string>
+    <string name="select_paddy_variety">നെല്ലിന്റെ ഇനം തിരഞ്ഞെടുക്കുക</string>
+    <string name="describe_symptoms_optional">ലക്ഷണങ്ങൾ വിവരിക്കുക (ഐച്ഛികം)</string>
+    <string name="hint_symptoms">ഉദാ., ഇലകളിൽ മഞ്ഞ പാടുകൾ, തവിട്ടുപാടുകൾ...</string>
+    <string name="upload_leaf_image">ഇലയുടെ ചിത്രം അപ്ലോഡ് ചെയ്യുക</string>
+    <string name="analyze_crop">വിള വിശകലനം ചെയ്യുക</string>
+
+    <string name="select_variety_error">ദയവായി നെല്ലിന്റെ ഇനം തിരഞ്ഞെടുക്കുക</string>
+    <string name="image_selected">ചിത്രം തിരഞ്ഞെടുക്കപ്പെട്ടു!</string>
+    <string name="analyzing_for_variety">%1$s നു വേണ്ടി വിശകലനം ചെയ്യുന്നു...</string>
+
+    <string name="soil_nutrients_npk">മണ്ണിലെ പോഷകങ്ങൾ (NPK)</string>
+    <string name="nitrogen_n">നൈട്രജൻ (N)</string>
+    <string name="phosphorus_p">ഫോസ്ഫറസ് (P)</string>
+    <string name="potassium_k">പൊട്ടാസ്യം (K)</string>
+    <string name="hint_nitrogen">ഉദാ., 90</string>
+    <string name="hint_phosphorus">ഉദാ., 42</string>
+    <string name="hint_potassium">ഉദാ., 40</string>
+    <string name="predict_yield">വിളവിന്റെ പ്രവചനം</string>
+    <string name="yield_page_title">അഗ്രോപാഡി വിളവു പ്രവചനം</string>
+    <string name="yield_page_subtitle">വയൽ, പോഷകങ്ങൾ, കാലാവസ്ഥാ വിവരങ്ങൾ അടിസ്ഥാനമാക്കി വിളവിന്റെ ശേഷി വിലയിരുത്തുക</string>
+    <string name="crop_profile">വിള പ്രൊഫൈൽ</string>
+    <string name="field_conditions">വയലിന്റെയും കാലാവസ്ഥയുടെയും ഇൻപുട്ടുകൾ</string>
+    <string name="land_area_acres">ഭൂവിശാല്യം (ഏക്കർ)</string>
+    <string name="hint_area_acres">ഉദാ., 2.5</string>
+    <string name="temperature_c">താപനില (°C)</string>
+    <string name="hint_temperature">ഉദാ., 28</string>
+    <string name="humidity_percent">ആർദ്രത (%)</string>
+    <string name="hint_humidity">ഉദാ., 78</string>
+    <string name="soil_ph">മണ്ണിന്റെ pH</string>
+    <string name="hint_soil_ph">ഉദാ., 6.4</string>
+    <string name="rainfall_mm">മഴ (മില്ലിമീറ്റർ)</string>
+    <string name="hint_rainfall">ഉദാ., 240</string>
+    <string name="predict_yield_now">ഇപ്പോൾ വിളവ് പ്രവചിക്കുക</string>
+
+    <string name="fill_nutrients_error">എല്ലാ പോഷക മൂല്യങ്ങളും പൂരിപ്പിക്കുക</string>
+    <string name="calculating_yield_values">N:%1$s, P:%2$s, K:%3$s അടിസ്ഥാനത്തിൽ വിളവ് കണക്കാക്കുന്നു</string>
+    <string name="fill_yield_inputs_error">വിള പ്രവചനത്തിനായുള്ള എല്ലാ ഇൻപുട്ടുകളും പൂരിപ്പിക്കുക</string>
+    <string name="invalid_yield_input_error">യാഥാർത്ഥ്യപരമായ പരിധിക്കുള്ളിൽ സാധുവായ കൃഷി മൂല്യങ്ങൾ നൽകുക</string>
+    <string name="yield_result_title">അഗ്രോപാഡി വിളവ് ഫലം</string>
+    <string name="yield_band_excellent">മികച്ച സാധ്യത</string>
+    <string name="yield_band_good">നല്ല സാധ്യത</string>
+    <string name="yield_band_moderate">മിതമായ സാധ്യത</string>
+    <string name="yield_band_low">കുറഞ്ഞ സാധ്യത</string>
+    <string name="label_yield_per_acre">വിളവ് / ഏക്കർ</string>
+    <string name="label_total_production">ആകെ ഉൽപ്പാദനം</string>
+    <string name="label_yield_summary">പ്രകടന സംഗ്രഹം</string>
+    <string name="yield_value_format">%1$.2f ടൺ/ഏക്കർ</string>
+    <string name="total_yield_value_format">%1$.2f ടൺ</string>
+    <string name="btn_predict_again">വീണ്ടും പ്രവചിക്കുക</string>
+
+    <string name="profile_title">പ്രൊഫൈൽ</string>
+    <string name="profile_details">പ്രൊഫൈൽ വിവരങ്ങൾ</string>
+    <string name="account_actions">അക്കൗണ്ട് പ്രവർത്തനങ്ങൾ</string>
+    <string name="default_profile_name">അഗ്രോപാഡി ഉപയോക്താവ്</string>
+    <string name="default_profile_email">ഇമെയിൽ ചേർത്തിട്ടില്ല</string>
+
+    <!-- Disease Detection Page -->
+    <string name="upload_crop_image_title">വിള ചിത്രം അപ്‌ലോഡ് ചെയ്യുക</string>
+    <string name="upload_instructions">ഇല ഫോട്ടോ അപ്‌ലോഡ് ചെയ്യാൻ ക്യാമറ അല്ലെങ്കിൽ ഗ്യാലറി ടാപ്പ് ചെയ്യുക</string>
+    <string name="btn_camera">📷 ക്യാമറ</string>
+    <string name="btn_gallery">🖼 ഗ്യാലറി</string>
+    <string name="invalid_image_error">⚠  അസാധുവായ ചിത്രം. ഒരു വിള അല്ലെങ്കിൽ ഇലയുടെ ഫോട്ടോ അപ്‌ലോഡ് ചെയ്യുക.</string>
+    <string name="invalid_image_error_toast">തുടരാൻ സാധുവായ വിള ഇല ചിത്രം അപ്‌ലോഡ് ചെയ്യുക</string>
+    <string name="no_image_error">ആദ്യം ഒരു വിള ചിത്രം തിരഞ്ഞെടുക്കുക അല്ലെങ്കിൽ എടുക്കുക</string>
+    <string name="tap_to_change">ചിത്രം മാറ്റാൻ താഴെ ബട്ടണുകൾ ഉപയോഗിക്കുക</string>
+    <string name="disease_result_title">അഗ്രോപാഡി രോഗ ഫലം</string>
+    <string name="severity_healthy">ആരോഗ്യകരം</string>
+    <string name="severity_mild">മൃദു അണുബാധ</string>
+    <string name="severity_moderate">മിതമായ അണുബാധ</string>
+    <string name="severity_severe">ഗുരുതരം</string>
+    <string name="label_confidence">ആത്മവിശ്വാസം</string>
+    <string name="label_selected_variety">തിരഞ്ഞെടുത്ത ഇനം</string>
+    <string name="label_disease_identified">തിരിച്ചറിഞ്ഞ രോഗം</string>
+    <string name="label_cause">കാരണം</string>
+    <string name="recommended_action">ശുപാർശ ചെയ്ത നടപടി</string>
+    <string name="btn_analyze_again">മറ്റൊരു ചിത്രം വിശകലനം ചെയ്യുക</string>
+    <string name="disease_page_subtitle">നെൽ കൃഷിക്ക് AI രോഗ വിശകലനം</string>
+    <string name="unknown_variety">അജ്ഞാത ഇനം</string>
+    <string name="crop_details">വിള വിശദാംശങ്ങൾ</string>
+    <string name="camera_permission_denied">ക്യാമറ അനുമതി നിരസിച്ചു</string>
+
+    <string-array name="paddy_varieties">
+        <item>ഇനം തിരഞ്ഞെടുക്കുക</item>
+        <item>ജ്യോതി</item>
+        <item>കാഞ്ചന</item>
+        <item>ഉമ</item>
+        <item>ജയ</item>
+        <item>മട്ട</item>
+    </string-array>
+</resources>

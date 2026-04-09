@@ -1,0 +1,139 @@
+<resources>
+    <string name="app_name">एग्रोपैडी एआई</string>
+    <string name="agropaddy_ai">एग्रोपैडी एआई</string>
+    <string name="agropaddy">एग्रोपैडी</string>
+    <string name="kerala_paddy_monitoring">केरल धान निगरानी</string>
+
+    <string name="language_english">English</string>
+    <string name="language_hindi">हिन्दी</string>
+    <string name="language_malayalam">മലയാളം</string>
+    <string name="language_updated">भाषा अपडेट हो गई</string>
+    <string name="language_preference">भाषा पसंद</string>
+    <string name="language_preference_subtitle">पूरे ऐप के लिए अपनी भाषा चुनें</string>
+
+    <string name="hint_full_name">पूरा नाम</string>
+    <string name="hint_email">ईमेल</string>
+    <string name="hint_password">पासवर्ड</string>
+    <string name="hint_confirm_password">पासवर्ड की पुष्टि करें</string>
+
+    <string name="login">लॉगिन</string>
+    <string name="logout">लॉगआउट</string>
+    <string name="sign_up">साइन अप</string>
+    <string name="no_account_signup">खाता नहीं है? साइन अप करें</string>
+    <string name="already_have_account_login">पहले से खाता है? लॉगिन करें</string>
+
+    <string name="create_account">अपना खाता बनाएं</string>
+    <string name="signup_subtitle">अपनी खेती की योजना आज से शुरू करें</string>
+    <string name="signup_success">साइन अप सफल रहा</string>
+
+    <string name="fill_all_fields">कृपया सभी फ़ील्ड भरें</string>
+    <string name="invalid_email">कृपया मान्य ईमेल दर्ज करें</string>
+    <string name="password_too_short">पासवर्ड कम से कम 4 अक्षर का होना चाहिए</string>
+    <string name="password_mismatch">पासवर्ड मेल नहीं खाते</string>
+
+    <string name="login_success">लॉगिन सफल रहा</string>
+    <string name="login_invalid">अमान्य उपयोगकर्ता नाम या पासवर्ड</string>
+
+    <string name="dashboard">डैशबोर्ड</string>
+    <string name="choose_service">सेवा चुनें</string>
+    <string name="select_option_get_started">शुरू करने के लिए एक विकल्प चुनें</string>
+
+    <string name="disease_detection">रोग पहचान</string>
+    <string name="identify_crop_diseases">फसल रोग पहचानें</string>
+    <string name="yield_prediction">उपज पूर्वानुमान</string>
+    <string name="predict_your_harvest">अपनी फसल का पूर्वानुमान करें</string>
+
+    <string name="back">वापस</string>
+    <string name="back_arrow">← वापस</string>
+
+    <string name="select_paddy_variety_kerala">धान की किस्म चुनें (केरल)</string>
+    <string name="select_paddy_variety">धान की किस्म चुनें</string>
+    <string name="describe_symptoms_optional">लक्षण बताएं (वैकल्पिक)</string>
+    <string name="hint_symptoms">उदा., पत्तियों पर पीले धब्बे, भूरे धब्बे...</string>
+    <string name="upload_leaf_image">पत्ती की तस्वीर अपलोड करें</string>
+    <string name="analyze_crop">फसल का विश्लेषण करें</string>
+
+    <string name="select_variety_error">कृपया धान की किस्म चुनें</string>
+    <string name="image_selected">चित्र चयनित!</string>
+    <string name="analyzing_for_variety">%1$s के लिए विश्लेषण किया जा रहा है...</string>
+
+    <string name="soil_nutrients_npk">मृदा पोषक तत्व (NPK)</string>
+    <string name="nitrogen_n">नाइट्रोजन (N)</string>
+    <string name="phosphorus_p">फॉस्फोरस (P)</string>
+    <string name="potassium_k">पोटैशियम (K)</string>
+    <string name="hint_nitrogen">उदा., 90</string>
+    <string name="hint_phosphorus">उदा., 42</string>
+    <string name="hint_potassium">उदा., 40</string>
+    <string name="predict_yield">उपज का अनुमान लगाएं</string>
+    <string name="yield_page_title">एग्रोपैडी उपज पूर्वानुमान</string>
+    <string name="yield_page_subtitle">खेत, पोषक तत्व और मौसम के आधार पर फसल उत्पादन का अनुमान लगाएं</string>
+    <string name="crop_profile">फसल प्रोफ़ाइल</string>
+    <string name="field_conditions">खेत और मौसम इनपुट</string>
+    <string name="land_area_acres">भूमि क्षेत्र (एकड़)</string>
+    <string name="hint_area_acres">उदा., 2.5</string>
+    <string name="temperature_c">तापमान (°C)</string>
+    <string name="hint_temperature">उदा., 28</string>
+    <string name="humidity_percent">आर्द्रता (%)</string>
+    <string name="hint_humidity">उदा., 78</string>
+    <string name="soil_ph">मिट्टी का pH</string>
+    <string name="hint_soil_ph">उदा., 6.4</string>
+    <string name="rainfall_mm">वर्षा (मिमी)</string>
+    <string name="hint_rainfall">उदा., 240</string>
+    <string name="predict_yield_now">अब उपज का अनुमान लगाएं</string>
+
+    <string name="fill_nutrients_error">कृपया सभी पोषक तत्व मान भरें</string>
+    <string name="calculating_yield_values">N:%1$s, P:%2$s, K:%3$s के आधार पर उपज की गणना की जा रही है</string>
+    <string name="fill_yield_inputs_error">कृपया उपज पूर्वानुमान के सभी इनपुट भरें</string>
+    <string name="invalid_yield_input_error">वास्तविक सीमा के भीतर मान्य कृषि मान दर्ज करें</string>
+    <string name="yield_result_title">एग्रोपैडी उपज परिणाम</string>
+    <string name="yield_band_excellent">उत्कृष्ट संभावना</string>
+    <string name="yield_band_good">अच्छी संभावना</string>
+    <string name="yield_band_moderate">मध्यम संभावना</string>
+    <string name="yield_band_low">कम संभावना</string>
+    <string name="label_yield_per_acre">उपज / एकड़</string>
+    <string name="label_total_production">कुल उत्पादन</string>
+    <string name="label_yield_summary">प्रदर्शन सारांश</string>
+    <string name="yield_value_format">%1$.2f टन/एकड़</string>
+    <string name="total_yield_value_format">%1$.2f टन</string>
+    <string name="btn_predict_again">फिर से अनुमान लगाएं</string>
+
+    <string name="profile_title">प्रोफ़ाइल</string>
+    <string name="profile_details">प्रोफ़ाइल विवरण</string>
+    <string name="account_actions">खाता क्रियाएं</string>
+    <string name="default_profile_name">एग्रोपैडी उपयोगकर्ता</string>
+    <string name="default_profile_email">कोई ईमेल जोड़ा नहीं गया</string>
+
+    <!-- Disease Detection Page -->
+    <string name="upload_crop_image_title">फसल की छवि अपलोड करें</string>
+    <string name="upload_instructions">पत्ते की फ़ोटो के लिए कैमरा या गैलरी टैप करें</string>
+    <string name="btn_camera">📷 कैमरा</string>
+    <string name="btn_gallery">🖼 गैलरी</string>
+    <string name="invalid_image_error">⚠  अमान्य छवि। कृपया फसल या पत्ते की तस्वीर अपलोड करें।</string>
+    <string name="invalid_image_error_toast">जारी रखने के लिए वैध फसल पत्ती की छवि अपलोड करें</string>
+    <string name="no_image_error">पहले एक फसल छवि चुनें या कैप्चर करें</string>
+    <string name="tap_to_change">छवि बदलने के लिए नीचे दिए बटन का उपयोग करें</string>
+    <string name="disease_result_title">एग्रोपैडी रोग परिणाम</string>
+    <string name="severity_healthy">स्वस्थ</string>
+    <string name="severity_mild">हल्का संक्रमण</string>
+    <string name="severity_moderate">मध्यम संक्रमण</string>
+    <string name="severity_severe">गंभीर</string>
+    <string name="label_confidence">विश्वास स्तर</string>
+    <string name="label_selected_variety">चुनी गई किस्म</string>
+    <string name="label_disease_identified">पहचाना गया रोग</string>
+    <string name="label_cause">कारण</string>
+    <string name="recommended_action">अनुशंसित कार्रवाई</string>
+    <string name="btn_analyze_again">दूसरी छवि का विश्लेषण करें</string>
+    <string name="disease_page_subtitle">धान की फसल के लिए AI रोग विश्लेषण</string>
+    <string name="unknown_variety">अज्ञात किस्म</string>
+    <string name="crop_details">फसल विवरण</string>
+    <string name="camera_permission_denied">कैमरा अनुमति अस्वीकृत</string>
+
+    <string-array name="paddy_varieties">
+        <item>किस्म चुनें</item>
+        <item>ज्योति</item>
+        <item>कंचना</item>
+        <item>उमा</item>
+        <item>जया</item>
+        <item>मट्टा</item>
+    </string-array>
+</resources>
