@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -15,6 +16,10 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        // OPTIMIZATION: Keeps your final APK slim by filtering out system strings
+        // for languages your app doesn't actively support.
+        //resConfigs("en", "ml", "hi")
     }
 
     buildTypes {
@@ -33,20 +38,32 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    // NATIVE SETUP: Tells Gradle to automatically construct the multi-language configuration panel
+    androidResources {
+        generateLocaleConfig = true
+    }
 }
+
 dependencies {
+    implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
+    // Add this line to import the Realtime Database tools
+    implementation ("com.google.mlkit:translate:17.0.2")
+    implementation("com.google.firebase:firebase-database-ktx")
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-firestore")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
 
-    // --- ADD THESE NEW LINES ---
+    // Network & Concurrency Libraries
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
+    implementation(libs.okhttp)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.androidx.lifecycle.runtime.ktx)
-    // ---------------------------
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

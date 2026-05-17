@@ -1,53 +1,185 @@
 package com.example.myapplication
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.LinearLayout
+import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.os.LocaleListCompat
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
+import com.google.android.material.imageview.ShapeableImageView
+import com.google.android.material.materialswitch.MaterialSwitch
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
-class DashboardActivity : AppCompatActivity() {
+// Extending BaseActivity to inherit real-time language parsing configurations
+class DashboardActivity : BaseActivity() {
+
+    private lateinit var drawerLayout: DrawerLayout
+    private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var auth: FirebaseAuth
+    private lateinit var dbRef: FirebaseDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_dashboard)
 
-        // -------- Profile Button --------
-        val btnProfile = findViewById<LinearLayout>(R.id.btnProfileSettings)
-        btnProfile.setOnClickListener {
-            val intent = Intent(this, ProfileActivity::class.java)
-            startActivity(intent)
+        // 1. Manage Dark Mode Preference State Cleanly
+        sharedPreferences = getSharedPreferences("AppPreferences", Context.MODE_PRIVATE)
+        val isDarkMode = sharedPreferences.getBoolean("DarkMode", false)
+
+        if (isDarkMode) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
 
-        // -------- Logout Button --------
-        val btnLogout = findViewById<LinearLayout>(R.id.btnLogout)
-        btnLogout.setOnClickListener {
+        setContentView(R.layout.activity_dashboard)
 
+        // Initialize Firebase Authentication and the Singapore Realtime Database Cluster
+        auth = FirebaseAuth.getInstance()
+        dbRef = FirebaseDatabase.getInstance("https://smartcropai-265bd-default-rtdb.asia-southeast1.firebasedatabase.app/")
+
+        // -------- Drawer Layout Panel Setup --------
+        drawerLayout = findViewById(R.id.drawerLayout)
+
+        val btnProfile = findViewById<LinearLayout>(R.id.btnProfileSettings)
+        btnProfile.setOnClickListener {
+            if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                drawerLayout.closeDrawer(GravityCompat.START)
+            } else {
+                drawerLayout.openDrawer(GravityCompat.START)
+            }
+        }
+
+        // -------- Profile Drawer UI Element Bindings --------
+        val imgProfile = findViewById<ShapeableImageView>(R.id.imgProfile)
+        val tvName = findViewById<TextView>(R.id.tvName)
+        val btnChangeAvatar = findViewById<MaterialButton>(R.id.btnChangeAvatar)
+        val btnRename = findViewById<MaterialButton>(R.id.btnRename)
+        val btnSupport = findViewById<MaterialButton>(R.id.btnSupport)
+        val btnAboutUs = findViewById<MaterialButton>(R.id.btnAboutUs)
+        val btnSelectLanguage = findViewById<MaterialButton>(R.id.btnSelectLanguage)
+        val themeSwitch = findViewById<MaterialSwitch>(R.id.themeSwitch)
+
+        themeSwitch.isChecked = isDarkMode
+
+        themeSwitch.setOnCheckedChangeListener { _, isChecked ->
+            val editor = sharedPreferences.edit()
+            editor.putBoolean("DarkMode", isChecked)
+            editor.apply()
+
+            if (isChecked) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }
+
+        // -------- FETCH USERNAME DYNAMICALLY FROM REALTIME DATABASE --------
+        val currentUserId = auth.currentUser?.uid
+        if (currentUserId != null) {
+            dbRef.getReference("users").child(currentUserId)
+                .get()
+                .addOnSuccessListener { snapshot ->
+                    if (snapshot.exists()) {
+                        val dbUsername = snapshot.child("username").value as? String ?: ""
+                        if (dbUsername.isNotEmpty() && dbUsername != "null") {
+                            // SIMPLIFIED: Directly sets the plain text name without strings.xml dependencies
+                            tvName.text = "Welcome, $dbUsername"
+                        }
+                    }
+                }
+                .addOnFailureListener {
+                    // Static fallback display if offline
+                    tvName.text = "Welcome User"
+                }
+        }
+
+        // -------- NATIVE MULTI-LANGUAGE CHOOSER DIALOG ENGINE --------
+        btnSelectLanguage.setOnClickListener {
+            drawerLayout.closeDrawer(GravityCompat.START)
+
+            val languages = arrayOf("English", "മലയാളം (Malayalam)", "हिन्दी (Hindi)")
+            val langCodes = arrayOf("en", "ml", "hi")
+
+            val currentLang = AppCompatDelegate.getApplicationLocales()[0]?.language ?: "en"
+            val checkedItem = langCodes.indexOf(currentLang).coerceAtLeast(0)
+
+            AlertDialog.Builder(this)
+                .setTitle("Select Language / ഭാഷ തിരഞ്ഞെടുക്കുക")
+                .setSingleChoiceItems(languages, checkedItem) { dialog, which ->
+                    val selectedLangCode = langCodes[which]
+
+                    val appLocale = LocaleListCompat.forLanguageTags(selectedLangCode)
+                    AppCompatDelegate.setApplicationLocales(appLocale)
+
+                    dialog.dismiss()
+
+                    // Redraw activity layout parameters instantly
+                    recreate()
+                }
+                .setNegativeButton("Cancel", null)
+                .show()
+        }
+
+        // -------- General Click Target Click Listeners --------
+        btnChangeAvatar.setOnClickListener {
+            Toast.makeText(this, "Change Avatar Clicked", Toast.LENGTH_SHORT).show()
+            drawerLayout.closeDrawer(GravityCompat.START)
+        }
+
+        btnRename.setOnClickListener {
+            Toast.makeText(this, "Rename Clicked", Toast.LENGTH_SHORT).show()
+            drawerLayout.closeDrawer(GravityCompat.START)
+        }
+
+        btnSupport.setOnClickListener {
+            Toast.makeText(this, getString(R.string.support_feedback), Toast.LENGTH_SHORT).show()
+            drawerLayout.closeDrawer(GravityCompat.START)
+        }
+
+        btnAboutUs.setOnClickListener {
+            Toast.makeText(this, getString(R.string.about_us), Toast.LENGTH_SHORT).show()
+            drawerLayout.closeDrawer(GravityCompat.START)
+        }
+
+        val btnLogoutMenu = findViewById<MaterialButton>(R.id.btnLogout)
+        btnLogoutMenu.setOnClickListener {
+            drawerLayout.closeDrawer(GravityCompat.START)
+            auth.signOut()
             val intent = Intent(this, LoginActivity::class.java)
-
-            // Clears activity stack
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-
             startActivity(intent)
             finish()
         }
 
-        // -------- Disease Detection Card --------
+        // -------- Main Dashboard Navigation Cards --------
         val cardDisease = findViewById<MaterialCardView>(R.id.cardDisease)
         cardDisease.setOnClickListener {
-
             val intent = Intent(this, DiseaseDetectionActivity::class.java)
             startActivity(intent)
-
         }
 
-        // -------- Yield Prediction Card --------
         val cardYield = findViewById<MaterialCardView>(R.id.cardYield)
         cardYield.setOnClickListener {
-
             val intent = Intent(this, YieldPredictionActivity::class.java)
             startActivity(intent)
+        }
+    }
 
+    override fun onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START)
+        } else {
+            super.onBackPressed()
         }
     }
 }

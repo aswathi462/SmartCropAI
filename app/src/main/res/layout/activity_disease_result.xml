@@ -1,97 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://tools.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F7FFF7">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/resultTopBar"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="#4F6D46">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="AgroPaddy Disease Result"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    android:background="#F4F9F4"
+    android:fillViewport="true">
 
     <LinearLayout
-        android:id="@+id/severityArea"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:orientation="vertical"
-        android:paddingTop="40dp"
-        app:layout_constraintTop_toBottomOf="@id/resultTopBar">
-
-        <FrameLayout
-            android:id="@+id/statusCircle"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:background="@android:drawable/presence_online"> <ImageView
-            android:id="@+id/ivStatusIcon"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center"
-            android:src="@android:drawable/ic_dialog_info"
-            app:tint="#FFFFFF" />
-        </FrameLayout>
+        android:padding="24dp">
 
         <TextView
-            android:id="@+id/tvSeverityText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Mild Infection"
-            android:textColor="#EAB308"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            android:text="SmartCropAI Disease Result"
+            android:textSize="18sp"
+            android:textColor="#3D5636"
+            android:layout_gravity="center_horizontal" />
 
         <TextView
-            android:id="@+id/tvConfidenceBadge"
+            android:id="@+id/tvDiseaseName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:background="@android:drawable/editbox_background"
-            android:paddingHorizontal="20dp"
-            android:paddingVertical="8dp"
-            android:text="87%"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-    </LinearLayout>
+            android:textSize="36sp"
+            android:textStyle="bold"
+            android:textColor="#111111"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            tools:text="Rice Blast" />
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="24dp"
-        app:cardCornerRadius="16dp"
-        app:layout_constraintTop_toBottomOf="@id/severityArea">
-        <LinearLayout
+        <TextView
+            android:id="@+id/tvConfidence"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#444444"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            tools:text="Confidence: 94.5%" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#DDDDDD"
+            android:layout_marginVertical="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Recommended Treatments:"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#111111"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/tvTreatment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="20dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Disease Identified"
-                android:textColor="#666666" />
-            <TextView
-                android:id="@+id/tvDiseaseName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Bacterial Leaf Blight"
-                android:textSize="22sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+            android:textSize="16sp"
+            android:lineSpacingExtra="8dp"
+            android:textColor="#222222"
+            android:layout_marginBottom="24dp"
+            tools:text="• Spray tricyclazole @ 0.6 g/li.\n• Avoid excessive nitrogen." />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Preventive Measures:"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#111111"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/tvPreventive"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:lineSpacingExtra="8dp"
+            android:textColor="#222222"
+            android:layout_marginBottom="24dp"
+            tools:text="• Use blast-resistant crop varieties.\n• Treat seeds with fungicides before sowing." />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fertilizer Adjustments:"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#111111"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/tvFertilizer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:lineSpacingExtra="8dp"
+            android:textColor="#222222"
+            android:layout_marginBottom="32dp"
+            tools:text="• Reduce top dressing of urea fertilizer.\n• Apply potash fertilizer in split doses." />
+
+        <Button
+            android:id="@+id/btnResultBack"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Back to Dashboard"
+            android:backgroundTint="#4F6D46"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+</ScrollView>

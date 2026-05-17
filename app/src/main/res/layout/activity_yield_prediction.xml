@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:background="#F0F7EE">
 
-    <!-- TOP BAR -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/yieldTopBar"
         android:layout_width="match_parent"
@@ -22,6 +21,9 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:padding="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -29,7 +31,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="← Back"
+                android:text="@string/back_arrow"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -37,7 +39,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Yield Prediction"
+            android:text="@string/yield_prediction"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -46,7 +48,6 @@
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- MAIN CONTENT -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -60,11 +61,10 @@
             android:orientation="vertical"
             android:padding="24dp">
 
-            <!-- Spinner -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Select Paddy Variety"
+                android:text="@string/select_paddy_variety"
                 android:textStyle="bold"
                 android:textColor="#1B3022" />
 
@@ -72,9 +72,9 @@
                 android:id="@+id/spinnerYieldVariety"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
-                android:layout_marginTop="8dp" />
+                android:layout_marginTop="8dp"
+                android:entries="@array/paddy_varieties" />
 
-            <!-- NPK CARD -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -90,36 +90,38 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Soil Nutrients (NPK)"
+                        android:text="@string/soil_nutrients_npk"
                         android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/etN"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:hint="Nitrogen (N)"
+                        android:hint="@string/nitrogen_n"
                         android:inputType="numberDecimal"
-                        android:layout_marginTop="10dp"/>
+                        android:layout_marginTop="10dp"
+                        android:importantForAutofill="no" />
 
                     <EditText
                         android:id="@+id/etP"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:hint="Phosphorus (P)"
+                        android:hint="@string/phosphorus_p"
                         android:inputType="numberDecimal"
-                        android:layout_marginTop="8dp"/>
+                        android:layout_marginTop="8dp"
+                        android:importantForAutofill="no" />
 
                     <EditText
                         android:id="@+id/etK"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:hint="Potassium (K)"
+                        android:hint="@string/potassium_k"
                         android:inputType="numberDecimal"
-                        android:layout_marginTop="8dp"/>
+                        android:layout_marginTop="8dp"
+                        android:importantForAutofill="no" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- WEATHER CARD -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -136,38 +138,39 @@
                         android:id="@+id/etRain"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:hint="Rainfall (mm)"
-                        android:inputType="numberDecimal"/>
+                        android:hint="@string/rainfall_mm"
+                        android:inputType="numberDecimal"
+                        android:importantForAutofill="no" />
 
                     <EditText
                         android:id="@+id/etPH"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:hint="pH Value"
+                        android:hint="@string/soil_ph"
                         android:inputType="numberDecimal"
-                        android:layout_marginTop="8dp"/>
+                        android:layout_marginTop="8dp"
+                        android:importantForAutofill="no" />
 
                     <EditText
                         android:id="@+id/etHum"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:hint="Humidity (%)"
+                        android:hint="@string/humidity_percent"
                         android:inputType="numberDecimal"
-                        android:layout_marginTop="8dp"/>
+                        android:layout_marginTop="8dp"
+                        android:importantForAutofill="no" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- BUTTON -->
             <Button
                 android:id="@+id/btnPredictYield"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="30dp"
                 android:backgroundTint="#4F6D46"
-                android:text="Predict Yield"
+                android:text="@string/predict_yield"
                 android:textColor="#FFFFFF" />
 
-            <!-- LOADING -->
             <ProgressBar
                 android:id="@+id/progressBar"
                 android:layout_width="wrap_content"

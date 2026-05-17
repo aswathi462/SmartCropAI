@@ -7,28 +7,17 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.activity.result.contract.ActivityResultContracts
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.io.File
 
 class DiseaseDetectionActivity : AppCompatActivity() {
 
     private var selectedImageUri: Uri? = null
-
-    // Dummy values (you will replace with real image processing later)
-    private var brownCount = 10f
-    private var yellowCount = 15f
-    private var darkCount = 5f
-    private var greenCount = 70f
-    private var neutralCount = 0f
-    private var hashAccum = 12345
-
-    private val getImage =
-        registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
-            uri?.let {
-                selectedImageUri = it
-                findViewById<ImageView>(R.id.ivPreview).visibility = View.VISIBLE
-                findViewById<ImageView>(R.id.ivPreview).setImageURI(it)
-                findViewById<ImageView>(R.id.ivUploadIcon).visibility = View.GONE
-            }
-        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,58 +44,88 @@ class DiseaseDetectionActivity : AppCompatActivity() {
 
             if (variety == "Select Variety" || selectedImageUri == null) {
                 Toast.makeText(this, "Please select variety and image", Toast.LENGTH_SHORT).show()
-            } else {
+                return@setOnClickListener
+            }
 
-                val analysis = createPixelAnalysis()
+            val file = uriToFile(selectedImageUri!!)
 
-                val intent = Intent(this, DiseaseResultActivity::class.java)
-                intent.putExtra("VARIETY", variety)
+            val requestFile = file.asRequestBody("image/*".toMediaTypeOrNull())
+            val imagePart = MultipartBody.Part.createFormData(
+                "image",
+                file.name,
+                requestFile
+            )
 
-                // OPTIONAL: pass results to next activity
-                intent.putExtra("GREEN", analysis.greenRatio)
-                intent.putExtra("YELLOW", analysis.yellowRatio)
-                intent.putExtra("BROWN", analysis.brownRatio)
+            DiseaseRetrofitClient.api.uploadLeaf(imagePart)
+                .enqueue(object : Callback<DiseaseResponse> {
 
-                startActivity(intent)
+                    override fun onResponse(
+                        call: Call<DiseaseResponse>,
+                        response: Response<DiseaseResponse>
+                    ) {
+                        if (response.isSuccessful) {
+
+                            val result = response.body()
+
+                            val intent = Intent(
+                                this@DiseaseDetectionActivity,
+                                DiseaseResultActivity::class.java
+                            )
+
+                            intent.putExtra("VARIETY", variety)
+                            intent.putExtra("DISEASE", result?.diagnosis)
+                            intent.putExtra("STATUS", result?.status)
+                            intent.putExtra("CONFIDENCE", result?.confidence)
+                            intent.putExtra("FIREBASE_ID", result?.firebaseId)
+
+                            intent.putStringArrayListExtra(
+                                "TREATMENTS",
+                                ArrayList(result?.recommendation?.treatments ?: emptyList())
+                            )
+
+                            intent.putStringArrayListExtra(
+                                "PREVENTIVE",
+                                ArrayList(result?.recommendation?.preventive ?: emptyList())
+                            )
+
+                            intent.putStringArrayListExtra(
+                                "FERTILIZER",
+                                ArrayList(result?.recommendation?.fertilizer ?: emptyList())
+                            )
+
+                            startActivity(intent)
+
+                        } else {
+                            Toast.makeText(this@DiseaseDetectionActivity, "Server Error", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+
+                    override fun onFailure(call: Call<DiseaseResponse>, t: Throwable) {
+                        Toast.makeText(this@DiseaseDetectionActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+                    }
+                })
+        }
+    }
+
+    private fun uriToFile(uri: Uri): File {
+        val inputStream = contentResolver.openInputStream(uri)!!
+        val file = File(cacheDir, "leaf.jpg")
+        val outputStream = file.outputStream()
+
+        inputStream.copyTo(outputStream)
+
+        inputStream.close()
+        outputStream.close()
+
+        return file
+    }
+
+    private val getImage =
+        registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+            uri?.let {
+                selectedImageUri = it
+                findViewById<ImageView>(R.id.ivPreview).setImageURI(it)
+                findViewById<ImageView>(R.id.ivUploadIcon).visibility = View.GONE
             }
         }
-    }
-
-    // FIXED: Proper function instead of invalid return in onCreate
-    private fun createPixelAnalysis(): PixelAnalysis {
-
-        val total = brownCount + yellowCount + darkCount + greenCount + neutralCount
-
-        return PixelAnalysis(
-            brownRatio = brownCount / total,
-            yellowRatio = yellowCount / total,
-            darkRatio = darkCount / total,
-            greenRatio = greenCount / total,
-            neutralRatio = neutralCount / total,
-            contentHash = kotlin.math.abs(hashAccum)
-        )
-    }
-
-    // Your validation logic (kept same)
-    private fun isValidCropImage(analysis: PixelAnalysis): Boolean {
-
-        val plantRatio = analysis.greenRatio + analysis.yellowRatio + analysis.brownRatio
-        val diseasedLeafRatio = analysis.yellowRatio + analysis.brownRatio
-
-        return when {
-            analysis.greenRatio >= 0.14f && plantRatio >= 0.22f && analysis.neutralRatio <= 0.72f -> true
-            diseasedLeafRatio >= 0.20f && plantRatio >= 0.24f && analysis.darkRatio <= 0.38f -> true
-            else -> false
-        }
-    }
 }
-
-// Data class (IMPORTANT)
-data class PixelAnalysis(
-    val brownRatio: Float,
-    val yellowRatio: Float,
-    val darkRatio: Float,
-    val greenRatio: Float,
-    val neutralRatio: Float,
-    val contentHash: Int
-)

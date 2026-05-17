@@ -5,30 +5,39 @@
     android:layout_height="match_parent"
     android:background="#F0F7EE">
 
-    <!-- ===== TOP BAR ===== -->
+    <!-- TOP BAR -->
     <LinearLayout
         android:id="@+id/topBar"
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:background="#3E5F43"
-        android:elevation="6dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingStart="12dp"
+        android:paddingStart="8dp"
         android:paddingEnd="16dp"
         app:layout_constraintTop_toTopOf="parent">
 
+        <!-- BACK BUTTON -->
+        <TextView
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/back_arrow"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:padding="8dp" />
+
+        <!-- TITLE -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Disease Detection"
+            android:text="@string/disease_detection"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
-            android:textStyle="bold" />
-
+            android:textStyle="bold"
+            android:layout_marginStart="12dp"/>
     </LinearLayout>
 
-    <!-- MAIN SCROLL AREA -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -41,207 +50,92 @@
             android:orientation="vertical"
             android:padding="18dp">
 
-
-            <!-- ===== UPLOAD IMAGE CARD ===== -->
+            <!-- IMAGE UPLOAD CARD -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:layout_marginBottom="24dp">
+                android:layout_marginBottom="20dp"
+                android:padding="16dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <!-- Title -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="14dp"
-                        android:text="@string/upload_crop_image_title"
-                        android:textColor="#1B3022"
+                        android:text="@string/upload_leaf_image"
+                        android:textStyle="bold"
                         android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:layout_marginBottom="10dp" />
 
-                    <!-- Upload box -->
                     <FrameLayout
+                        android:id="@+id/uploadArea"
                         android:layout_width="match_parent"
                         android:layout_height="220dp"
-                        android:background="@drawable/dashed_border"
-                        android:clipToOutline="true">
-
-                        <LinearLayout
-                            android:id="@+id/uploadPlaceholder"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="56dp"
-                                android:layout_height="56dp"
-                                android:src="@drawable/ic_upload_leaf" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="12dp"
-                                android:text="@string/upload_instructions"
-                                android:textColor="#85AB85"
-                                android:textSize="14sp" />
-                        </LinearLayout>
+                        android:background="#E8F0E8">
 
                         <ImageView
-                            android:id="@+id/ivImagePreview"
+                            android:id="@+id/ivUploadIcon"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_gravity="center"
+                            android:src="@android:drawable/ic_menu_camera" />
+
+                        <ImageView
+                            android:id="@+id/ivPreview"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:scaleType="centerCrop"
                             android:visibility="gone" />
-
                     </FrameLayout>
 
-                    <TextView
-                        android:id="@+id/tvTapToChange"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:gravity="center"
-                        android:text="@string/tap_to_change"
-                        android:textColor="#85AB85"
-                        android:textSize="12sp"
-                        android:visibility="gone" />
-
-                    <TextView
-                        android:id="@+id/tvInvalidImage"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:background="#FFF3F3"
-                        android:padding="12dp"
-                        android:text="@string/invalid_image_error"
-                        android:textColor="#C0392B"
-                        android:textSize="13sp"
-                        android:visibility="gone" />
-
-                    <!-- Camera & Gallery -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:orientation="horizontal"
-                        android:weightSum="2">
-
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btnCamera"
-                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                            android:layout_width="0dp"
-                            android:layout_height="48dp"
-                            android:layout_marginEnd="8dp"
-                            android:layout_weight="1"
-                            android:text="@string/btn_camera"
-                            android:textColor="#3E5F43"
-                            app:cornerRadius="12dp"
-                            app:strokeColor="#3E5F43"
-                            app:strokeWidth="1.5dp" />
-
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btnGallery"
-                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                            android:layout_width="0dp"
-                            android:layout_height="48dp"
-                            android:layout_marginStart="8dp"
-                            android:layout_weight="1"
-                            android:text="@string/btn_gallery"
-                            android:textColor="#3E5F43"
-                            app:cornerRadius="12dp"
-                            app:strokeColor="#3E5F43"
-                            app:strokeWidth="1.5dp" />
-                    </LinearLayout>
-
                 </LinearLayout>
+
             </com.google.android.material.card.MaterialCardView>
 
-
-            <!-- ===== BACK BUTTON ===== -->
+            <!-- VARIETY -->
             <TextView
-                android:id="@+id/btnBack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="← Back"
-                android:textColor="#4F6D46"
-                android:textSize="18sp"
-                android:layout_marginBottom="24dp" />
-
-
-            <!-- ===== VARIETY ===== -->
-            <TextView
-                android:id="@+id/lblVariety"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Select Paddy Variety"
+                android:text="@string/select_variety"
                 android:textStyle="bold" />
 
             <Spinner
                 android:id="@+id/spinnerVariety"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="8dp" />
+                android:layout_height="55dp"
+                android:layout_marginTop="8dp"
+                android:entries="@array/paddy_varieties" />
 
-
-            <!-- ===== SYMPTOMS ===== -->
+            <!-- SYMPTOMS -->
             <TextView
-                android:id="@+id/lblSymptoms"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="Describe Symptoms"
-                android:textStyle="bold" />
+                android:text="Symptoms (optional)"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp" />
 
             <EditText
                 android:id="@+id/etSymptoms"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_marginTop="8dp"
-                android:hint="e.g. Yellow spots..."
+                android:hint="Describe symptoms..."
                 android:gravity="top"
-                android:padding="12dp"
                 android:background="@android:drawable/editbox_background" />
 
+            <!-- BACK -->
 
-            <!-- ===== UPLOAD LEAF IMAGE 2 ===== -->
-            <FrameLayout
-                android:id="@+id/uploadArea"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_marginTop="24dp"
-                android:background="#E8F0E8">
-
-                <ImageView
-                    android:id="@+id/ivUploadIcon"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_gravity="center"
-                    android:src="@android:drawable/ic_menu_camera" />
-
-                <ImageView
-                    android:id="@+id/ivPreview"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:visibility="gone" />
-
-            </FrameLayout>
-
-            <!-- SUBMIT BUTTON -->
+            <!-- SUBMIT -->
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnSubmit"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="32dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="25dp"
+                android:text="Analyze Disease"
                 android:backgroundTint="#4F6D46"
-                android:text="Analyze Crop"
                 android:textColor="#FFFFFF" />
 
         </LinearLayout>
