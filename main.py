@@ -1,31 +1,22 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestRegressor
+import joblib
 
-# Import correct function
 from recommendation import generate_recommendation
 
 app = FastAPI()
 
-# ---------------- LOAD & TRAIN MODEL ----------------
-data = pd.read_csv("dataset_with_yield.csv")
+# Load trained model
+model = joblib.load("rice_yield_model.pkl")
 
-rice_data = data[data['Crop'] == 'Rice']
+# Features order (VERY IMPORTANT)
+features = [
+    'Nitrogen', 'Phosphorus', 'Potassium',
+    'Temperature', 'Humidity', 'pH_Value', 'Rainfall'
+]
 
-features = ['Nitrogen', 'Phosphorus', 'Potassium', 'Temperature', 'Humidity', 'pH_Value', 'Rainfall']
-X = rice_data[features]
-y = rice_data['Yield']
-
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
-model = RandomForestRegressor()
-model.fit(X_train, y_train)
-
-print("Model trained successfully")
-
-
-# ---------------- INPUT MODEL ----------------
+# ---------------- INPUT ----------------
 class CropInput(BaseModel):
     N: float
     P: float
@@ -35,14 +26,12 @@ class CropInput(BaseModel):
     ph: float
     rain: float
 
-
 # ---------------- HOME ----------------
 @app.get("/")
 def home():
     return {"message": "Rice Yield Prediction API Running"}
 
-
-# ---------------- PREDICTION ENDPOINT ----------------
+# ---------------- PREDICTION ----------------
 @app.post("/predict")
 def predict(input: CropInput):
 
@@ -58,7 +47,6 @@ def predict(input: CropInput):
 
     prediction = model.predict(sample)
 
-    # Call corrected function
     tips = generate_recommendation(
         input.N,
         input.P,
