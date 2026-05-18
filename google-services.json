@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "333390423865",
+    "project_id": "smartcropai-265bd",
+    "storage_bucket": "smartcropai-265bd.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:333390423865:android:afd19c8d2d4aff23e3aae8",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdKf4amIwsGQGk-VzQd37vALOFje2cvFM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

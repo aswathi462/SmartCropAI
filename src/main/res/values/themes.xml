@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Base.Theme.MyApplication" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">#3E5F43</item>
+        <item name="android:windowBackground">#F4F8F1</item>
+        <item name="colorContainer">#E5EFE2</item>
+        <item name="colorSurface">#FFFFFF</item>
+        <item name="colorOnSurface">#1F3222</item>
+    </style>
+
+    <style name="Theme.MyApplication" parent="Base.Theme.MyApplication" />
+
+    <style name="CircleImageStyle" parent="">
+        <item name="cornerSize">50%</item>
+    </style>
+</resources>

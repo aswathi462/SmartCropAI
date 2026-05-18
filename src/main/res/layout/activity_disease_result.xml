@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://tools.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:attr/windowBackground"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Disease Result"
+            android:textSize="18sp"
+            android:textColor="?attr/colorPrimary"
+            android:layout_gravity="center_horizontal" />
+
+        <TextView
+            android:id="@+id/tvDiseaseName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            android:textColor="?attr/colorOnSurface"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            tools:text="Rice Blast" />
+
+        <TextView
+            android:id="@+id/tvConfidence"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="?attr/colorOnSurface"
+            android:alpha="0.7"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            tools:text="Confidence: 94.5%" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?attr/colorOnSurface"
+            android:alpha="0.2"
+            android:layout_marginVertical="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Recommended Treatments:"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="?attr/colorOnSurface"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/tvTreatment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:lineSpacingExtra="8dp"
+            android:textColor="?attr/colorOnSurface"
+            android:alpha="0.85"
+            android:layout_marginBottom="24dp"
+            tools:text="• Spray tricyclazole @ 0.6 g/li.\n• Avoid excessive nitrogen." />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Preventive Measures:"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="?attr/colorOnSurface"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/tvPreventive"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:lineSpacingExtra="8dp"
+            android:textColor="?attr/colorOnSurface"
+            android:alpha="0.85"
+            android:layout_marginBottom="24dp"
+            tools:text="• Use blast-resistant crop varieties.\n• Treat seeds with fungicides before sowing." />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fertilizer Adjustments:"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="?attr/colorOnSurface"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/tvFertilizer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:lineSpacingExtra="8dp"
+            android:textColor="?attr/colorOnSurface"
+            android:alpha="0.85"
+            android:layout_marginBottom="32dp"
+            tools:text="• Reduce top dressing of urea fertilizer.\n• Apply potash fertilizer in split doses." />
+
+        <Button
+            android:id="@+id/btnResultBack"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Back to Dashboard"
+            android:backgroundTint="?attr/colorPrimary"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+</ScrollView>
