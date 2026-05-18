@@ -18,7 +18,7 @@ class MainActivity : BaseActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-        LanguageSelectorHelper.bind(this, R.id.languageAutocompleteMain)
+        //LanguageSelectorHelper.bind(this, R.id.languageAutocompleteMain)
 
         // Adjust padding for system bars
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->

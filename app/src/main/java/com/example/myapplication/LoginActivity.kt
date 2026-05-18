@@ -8,7 +8,6 @@ import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 
-
 class LoginActivity : BaseActivity() {
     private lateinit var auth: FirebaseAuth
 
@@ -23,8 +22,6 @@ class LoginActivity : BaseActivity() {
             return
         }
         setContentView(R.layout.activity_login)
-
-        LanguageSelectorHelper.bind(this, R.id.languageAutocomplete)
 
         val username = findViewById<EditText>(R.id.etUsername)
         val password = findViewById<EditText>(R.id.etPassword)
@@ -47,13 +44,10 @@ class LoginActivity : BaseActivity() {
             auth.signInWithEmailAndPassword(user, pass)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-
                         Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show()
-
                         val intent = Intent(this, DashboardActivity::class.java)
                         startActivity(intent)
                         finish()
-
                     } else {
                         Toast.makeText(
                             this,
@@ -67,5 +61,4 @@ class LoginActivity : BaseActivity() {
             startActivity(Intent(this, SignUpActivity::class.java))
         }
     }
-
 }

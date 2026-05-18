@@ -20,7 +20,7 @@ object LanguageSelectorHelper {
         viewId: Int,
         onChanged: (() -> Unit)? = null
     ) {
-        val dropdown = activity.findViewById<AutoCompleteTextView>(viewId)
+        val dropdown = activity.findViewById<AutoCompleteTextView>(viewId) ?: return
         val labels = options.map { activity.getString(it.labelResId) }
 
         val adapter = object : ArrayAdapter<String>(
@@ -60,16 +60,23 @@ object LanguageSelectorHelper {
         }
         dropdown.setText(labels[selectedIndex], false)
 
-        dropdown.setOnItemClickListener { _, _, position, _ ->
-            val selected = options[position]
-            val latestSavedCode = LocaleManager.getSavedLanguage(activity)
-            if (selected.code != latestSavedCode) {
-                LocaleManager.saveLanguage(activity, selected.code)
-                dropdown.dismissDropDown()
-                dropdown.clearFocus()
-                dropdown.post {
-                    if (!activity.isFinishing && !activity.isDestroyed) {
-                        onChanged?.invoke() ?: activity.recreate()
+        // Fixed item click handling logic using explicit item string values
+        dropdown.setOnItemClickListener { parent, _, position, _ ->
+            val selectedLabel = parent.getItemAtPosition(position) as String
+            val selectedIndex = labels.indexOf(selectedLabel)
+
+            if (selectedIndex >= 0) {
+                val selected = options[selectedIndex]
+                val latestSavedCode = LocaleManager.getSavedLanguage(activity)
+
+                if (selected.code != latestSavedCode) {
+                    LocaleManager.saveLanguage(activity, selected.code)
+                    dropdown.dismissDropDown()
+                    dropdown.clearFocus()
+                    dropdown.post {
+                        if (!activity.isFinishing && !activity.isDestroyed) {
+                            onChanged?.invoke() ?: activity.recreate()
+                        }
                     }
                 }
             }

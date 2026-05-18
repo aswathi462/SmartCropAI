@@ -2,9 +2,9 @@
 <resources>
 
     <string name="app_name">SmartCropAI</string>
-    <string name="agropaddy_ai">AgroPaddy AI</string>
+    <string name="agropaddy_ai">SmartCropAI</string>
     <string name="agropaddy">AgroPaddy</string>
-    <string name="kerala_paddy_monitoring">Kerala Paddy Monitoring</string>
+
 
     <string name="language_english">English</string>
     <string name="language_hindi">हिन्दी</string>
@@ -40,13 +40,13 @@
     <string name="identify_diseases">Identify crop diseases</string>
     <string name="predict_harvest">Predict your harvest</string>
     <string name="welcome_deva">Welcome, Deva</string>
-    <string name="lets_get_started">Let\'t get started</string>
+
     <string name="change_avatar">Change Avatar</string>
     <string name="theme">Theme</string>
     <string name="change_language">Change Language</string>
     <string name="rename">Rename</string>
     <string name="support_feedback">Support &amp; Feedback</string>
-    <string name="about_us">About Us</string>
+    <string name="about">About</string>
     <string name="disease_detection">Disease Detection</string>
     <string name="identify_crop_diseases">Identify crop diseases</string>
     <string name="yield_prediction">Yield Prediction</string>
@@ -85,7 +85,7 @@
     <string name="land_area_acres">Total Farm Area (Acres)</string>
     <string name="no_image_error">Please select or take a photo first</string>
     <string name="predict_yield">Predict Yield</string>
-    <string name="predict_yield_now">Run Prediction Framework</string>
+    <string name="predict_yield_now">Allow Location Access</string>
     <string name="profile_details">Profile Details</string>
     <string name="profile_title">User Settings</string>
     <string name="select_paddy_variety_kerala">Select Kerala Rice Variety</string>
@@ -136,7 +136,8 @@
     <string name="nitrogen_n">Nitrogen (N)</string>
     <string name="phosphorus_p">Phosphorus (P)</string>
     <string name="potassium_k">Potassium (K)</string>
-
+    <string name="welcome_user">Welcome, %1$s</string>
+    <string name="lets_get_started">Let\'s get started</string>
     <string-array name="paddy_varieties">
         <item>Select Variety</item>
         <item>Jyothi</item>
@@ -145,5 +146,11 @@
         <item>Jaya</item>
         <item>Matta</item>
     </string-array>
+    <string-array name="languages_array">
+        <item>@string/language_english</item>
+        <item>@string/language_hindi</item>
+        <item>@string/language_malayalam</item>
+    </string-array>
 
 </resources>
+

@@ -34,13 +34,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent">
 
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@android:drawable/ic_menu_myplaces"
-                    app:tint="#FFFFFF"
-                    android:contentDescription="@string/profile" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -282,12 +275,13 @@
                     android:id="@+id/tvName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/welcome_deva"
+                    android:text="@string/welcome_user"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tvSubName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
@@ -303,17 +297,6 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="16dp">
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnChangeAvatar"
-                style="@style/Widget.Material3.Button.TextButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="start|center_vertical"
-                android:text="@string/change_avatar"
-                android:textColor="?attr/colorPrimary"
-                app:icon="@android:drawable/ic_menu_gallery"
-                app:iconTint="?attr/colorPrimary" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -362,17 +345,6 @@
                 app:iconTint="?attr/colorPrimary" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnRename"
-                style="@style/Widget.Material3.Button.TextButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="start|center_vertical"
-                android:text="@string/rename"
-                android:textColor="?attr/colorPrimary"
-                app:icon="@android:drawable/ic_menu_edit"
-                app:iconTint="?attr/colorPrimary" />
-
-            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnLogout"
                 style="@style/Widget.Material3.Button.TextButton"
                 android:layout_width="match_parent"
@@ -383,28 +355,7 @@
                 app:icon="@android:drawable/ic_lock_power_off"
                 app:iconTint="?attr/colorPrimary" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnSupport"
-                style="@style/Widget.Material3.Button.TextButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:gravity="start|center_vertical"
-                android:text="@string/support_feedback"
-                android:textColor="?attr/colorPrimary"
-                app:icon="@android:drawable/stat_notify_chat"
-                app:iconTint="?attr/colorPrimary" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnAboutUs"
-                style="@style/Widget.Material3.Button.TextButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="start|center_vertical"
-                android:text="@string/about_us"
-                android:textColor="?attr/colorPrimary"
-                app:icon="@android:drawable/ic_dialog_info"
-                app:iconTint="?attr/colorPrimary" />
 
         </LinearLayout>
     </LinearLayout>

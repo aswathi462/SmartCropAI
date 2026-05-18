@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">അഗ്രോപാഡി എഐ</string>
-    <string name="agropaddy_ai">അഗ്രോപാഡി എഐ</string>
+    <string name="app_name">സ്മാർട്ട്ക്രോപ്പ് എഐ</string>
+    <string name="agropaddy_ai">സ്മാർട്ട്ക്രോപ്പ് എഐ</string>
     <string name="agropaddy">അഗ്രോപാഡി</string>
     <string name="kerala_paddy_monitoring">കേരള നെൽ നിരീക്ഷണം</string>
 
@@ -10,7 +10,9 @@
     <string name="language_updated">ഭാഷ അപ്ഡേറ്റ് ചെയ്തു</string>
     <string name="language_preference">ഭാഷ തിരഞ്ഞെടുപ്പ്</string>
     <string name="language_preference_subtitle">ആപ്പിനാകെ ഉപയോഗിക്കാനുള്ള ഭാഷ തിരഞ്ഞെടുക്കുക</string>
-
+    <string name="analyze_disease">രോഗം നിർണ്ണയിക്കുക</string>\
+    <string name="welcome_user">%1$s, സ്വാഗതം</string>
+    <string name="lets_get_started">നമുക്ക് ആരംഭിക്കാം</string>
     <string name="hint_full_name">പൂർണ്ണ പേര്</string>
     <string name="hint_email">ഇമെയിൽ</string>
     <string name="hint_password">പാസ്‌വേഡ്</string>

@@ -8,7 +8,6 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
 import androidx.core.view.GravityCompat
@@ -20,7 +19,6 @@ import com.google.android.material.materialswitch.MaterialSwitch
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
-// Extending BaseActivity to inherit real-time language parsing configurations
 class DashboardActivity : BaseActivity() {
 
     private lateinit var drawerLayout: DrawerLayout
@@ -43,7 +41,7 @@ class DashboardActivity : BaseActivity() {
 
         setContentView(R.layout.activity_dashboard)
 
-        // Initialize Firebase Authentication and the Singapore Realtime Database Cluster
+        // Initialize Firebase Authentication and the Realtime Database Cluster
         auth = FirebaseAuth.getInstance()
         dbRef = FirebaseDatabase.getInstance("https://smartcropai-265bd-default-rtdb.asia-southeast1.firebasedatabase.app/")
 
@@ -62,10 +60,8 @@ class DashboardActivity : BaseActivity() {
         // -------- Profile Drawer UI Element Bindings --------
         val imgProfile = findViewById<ShapeableImageView>(R.id.imgProfile)
         val tvName = findViewById<TextView>(R.id.tvName)
-        val btnChangeAvatar = findViewById<MaterialButton>(R.id.btnChangeAvatar)
-        val btnRename = findViewById<MaterialButton>(R.id.btnRename)
-        val btnSupport = findViewById<MaterialButton>(R.id.btnSupport)
-        val btnAboutUs = findViewById<MaterialButton>(R.id.btnAboutUs)
+        val tvSubName = findViewById<TextView>(R.id.tvSubName) // Binding the standard subtitle tag if present
+        //val btnAboutUs = findViewById<MaterialButton>(R.id.btnAboutUs)
         val btnSelectLanguage = findViewById<MaterialButton>(R.id.btnSelectLanguage)
         val themeSwitch = findViewById<MaterialSwitch>(R.id.themeSwitch)
 
@@ -83,7 +79,7 @@ class DashboardActivity : BaseActivity() {
             }
         }
 
-        // -------- FETCH USERNAME DYNAMICALLY FROM REALTIME DATABASE --------
+        // -------- FETCH USERNAME DYNAMICALLY FROM REALTIME DATABASE WITH LOCALE FORMATTING --------
         val currentUserId = auth.currentUser?.uid
         if (currentUserId != null) {
             dbRef.getReference("users").child(currentUserId)
@@ -92,14 +88,16 @@ class DashboardActivity : BaseActivity() {
                     if (snapshot.exists()) {
                         val dbUsername = snapshot.child("username").value as? String ?: ""
                         if (dbUsername.isNotEmpty() && dbUsername != "null") {
-                            // SIMPLIFIED: Directly sets the plain text name without strings.xml dependencies
-                            tvName.text = "Welcome, $dbUsername"
+                            // FIX: Uses localized String resource argument injections safely
+                            tvName.text = getString(R.string.welcome_user, dbUsername)
+                        } else {
+                            tvName.text = getString(R.string.welcome_user, getString(R.string.select_option_get_started))
                         }
                     }
                 }
                 .addOnFailureListener {
-                    // Static fallback display if offline
-                    tvName.text = "Welcome User"
+                    // Localized offline safe fallback display
+                    tvName.text = getString(R.string.welcome_user, getString(R.string.select_option_get_started))
                 }
         }
 
@@ -110,46 +108,30 @@ class DashboardActivity : BaseActivity() {
             val languages = arrayOf("English", "മലയാളം (Malayalam)", "हिन्दी (Hindi)")
             val langCodes = arrayOf("en", "ml", "hi")
 
-            val currentLang = AppCompatDelegate.getApplicationLocales()[0]?.language ?: "en"
+            val currentLang = LocaleManager.getSavedLanguage(this)
             val checkedItem = langCodes.indexOf(currentLang).coerceAtLeast(0)
 
             AlertDialog.Builder(this)
-                .setTitle("Select Language / ഭാഷ തിരഞ്ഞെടുക്കുക")
+                .setTitle(getString(R.string.change_language)) // Localized dialog menu header frame tracking
                 .setSingleChoiceItems(languages, checkedItem) { dialog, which ->
                     val selectedLangCode = langCodes[which]
+
+                    LocaleManager.saveLanguage(this, selectedLangCode)
 
                     val appLocale = LocaleListCompat.forLanguageTags(selectedLangCode)
                     AppCompatDelegate.setApplicationLocales(appLocale)
 
                     dialog.dismiss()
 
-                    // Redraw activity layout parameters instantly
-                    recreate()
+                    val intent = Intent(this, DashboardActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                    startActivity(intent)
+                    finish()
                 }
-                .setNegativeButton("Cancel", null)
+                .setNegativeButton(android.R.string.cancel, null)
                 .show()
         }
 
-        // -------- General Click Target Click Listeners --------
-        btnChangeAvatar.setOnClickListener {
-            Toast.makeText(this, "Change Avatar Clicked", Toast.LENGTH_SHORT).show()
-            drawerLayout.closeDrawer(GravityCompat.START)
-        }
-
-        btnRename.setOnClickListener {
-            Toast.makeText(this, "Rename Clicked", Toast.LENGTH_SHORT).show()
-            drawerLayout.closeDrawer(GravityCompat.START)
-        }
-
-        btnSupport.setOnClickListener {
-            Toast.makeText(this, getString(R.string.support_feedback), Toast.LENGTH_SHORT).show()
-            drawerLayout.closeDrawer(GravityCompat.START)
-        }
-
-        btnAboutUs.setOnClickListener {
-            Toast.makeText(this, getString(R.string.about_us), Toast.LENGTH_SHORT).show()
-            drawerLayout.closeDrawer(GravityCompat.START)
-        }
 
         val btnLogoutMenu = findViewById<MaterialButton>(R.id.btnLogout)
         btnLogoutMenu.setOnClickListener {

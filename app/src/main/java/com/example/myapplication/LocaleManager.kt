@@ -19,10 +19,11 @@ object LocaleManager {
 
     fun saveLanguage(context: Context, languageCode: String) {
         if (languageCode !in supportedLanguageCodes) return
+
         context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
             .edit()
             .putString(KEY_LANGUAGE, languageCode)
-            .commit()
+            .apply()
     }
 
     fun applyLocale(base: Context): Context {
@@ -34,12 +35,6 @@ object LocaleManager {
         config.setLocale(locale)
         config.setLayoutDirection(locale)
 
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            base.createConfigurationContext(config)
-        } else {
-            @Suppress("DEPRECATION")
-            base.resources.updateConfiguration(config, base.resources.displayMetrics)
-            base
-        }
+        return base.createConfigurationContext(config)
     }
 }

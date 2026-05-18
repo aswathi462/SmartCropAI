@@ -3,20 +3,19 @@ package com.example.myapplication
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 
-class YieldResultActivity : AppCompatActivity() {
+class YieldResultActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_yield_result)
 
-        // Get data from Intent (safe handling)
+        // ✅ Get data from Intent with localized safe fallbacks
         val yieldValue = intent.getStringExtra("YIELD_COUNT")
-            ?: "0.00 tons/hectare"
+            ?: getString(R.string.invalid_yield_input_error) // Maps to a localized error placeholder
 
         val suggestValue = intent.getStringExtra("SUGGESTIONS")
-            ?: "No suggestions available"
+            ?: getString(R.string.select_option_get_started) // Maps to a localized generic fallback
 
         // Bind views
         val yieldText = findViewById<TextView>(R.id.tvYieldValue)
