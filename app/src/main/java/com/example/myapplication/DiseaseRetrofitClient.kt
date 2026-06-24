@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object DiseaseRetrofitClient {
 
-    private const val BASE_URL = "http://10.228.52.253:8001/"
+    private const val BASE_URL = "http://10.247.186.253:8001/"
 
     val api: DiseaseApiService by lazy {
         Retrofit.Builder()
