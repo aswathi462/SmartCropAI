@@ -1,0 +1,68 @@
+{
+  "brown_spot": {
+    "treatments": [
+      "Spray Carbendazim 1 g/L or Mancozeb 2 g/L.",
+      "Remove heavily infected leaves.",
+      "Improve field drainage to avoid standing water."
+    ],
+    "preventive": [
+      "Use disease-free seeds.",
+      "Remove weeds and maintain field hygiene.",
+      "Avoid overcrowded planting."
+    ],
+    "fertilizer": [
+      "Apply balanced NPK, especially Potash (K).",
+      "Avoid excessive nitrogen fertilizers."
+    ]
+  },
+
+  "leaf_scald": {
+    "treatments": [
+      "Spray Copper oxychloride @ 3 g/L.",
+      "Increase spacing to reduce humidity.",
+      "Use resistant varieties when possible."
+    ],
+    "preventive": [
+      "Deep plough before planting.",
+      "Use certified clean seeds.",
+      "Maintain field sanitation and remove debris."
+    ],
+    "fertilizer": [
+      "Apply potash-rich fertilizers.",
+      "Use soil-test-based NPK recommendations."
+    ]
+  },
+
+  "hispa": {
+    "treatments": [
+      "Spray Chlorpyrifos 2.5 ml/L or Triazophos 2 ml/L.",
+      "Hand-pick adult beetles in early morning and destroy them."
+    ],
+    "preventive": [
+      "Avoid excess nitrogen application.",
+      "Encourage natural predators.",
+      "Drain water temporarily to reduce pest activity."
+    ],
+    "fertilizer": [
+      "Use moderate nitrogen fertilizer.",
+      "Follow split application for urea."
+    ]
+  },
+
+  "tungro": {
+    "treatments": [
+      "Spray Imidacloprid 0.3 ml/L or Thiamethoxam 0.2 g/L to control leafhoppers.",
+      "Remove and destroy infected plants immediately."
+    ],
+    "preventive": [
+      "Use resistant paddy varieties.",
+      "Keep field weed-free.",
+      "Synchronize planting with neighbours to reduce vector build-up.",
+      "Avoid standing water and maintain proper drainage."
+    ],
+    "fertilizer": [
+      "Avoid high nitrogen doses.",
+      "Increase Potash to boost plant resistance."
+    ]
+  }
+}  

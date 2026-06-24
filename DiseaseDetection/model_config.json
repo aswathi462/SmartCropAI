@@ -1,0 +1,1 @@
+{"model_id": "tf_efficientnetv2_s.in21k_ft_in1k", "num_classes": 5, "classes": ["Brown_Spot", "Hispa", "Leaf_Scald", "Tungro", "Healthy"], "img_size": 224}
